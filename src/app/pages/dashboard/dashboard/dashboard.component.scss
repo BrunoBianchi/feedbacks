@@ -1,0 +1,97 @@
+:host {
+
+    .container-header{
+        width:100% !important;
+        height: 50px;
+        background-color: #222630;
+        padding:5px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #1a1d25bd;
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            .dropdown-toggle{
+                padding:5px;
+                border-radius:5px;
+                box-shadow: none;
+                outline: none;
+                border-color: transparent;
+                color:#ffffff;
+                background-color: #ffffff07;
+            }
+            .dropdown-menu{
+                width:19px !important;
+            }
+        }
+        .name {
+            color:white;
+            font-size:1.5rem;
+            font-weight: 500;
+            padding-left: 30px;
+            height: 100%;
+            width:auto;
+            .stats {
+                font-size: 1rem;
+                margin-left:10px;
+                padding:5px;
+                border-radius:5px;
+                &.pending{
+                    color:#c47105;
+                    background-color: #c46b0538;
+                }
+                &.available {
+                    color:#05c46e;
+                    background-color: #05c43838;                   
+                }
+            }
+            i{
+                padding-right: 20px;
+                font-size:1.1rem;
+            }
+
+            
+        }
+
+    }
+    .container-table {
+        width:95%;
+        margin:0 auto;
+        margin-top:20px;
+        table  {
+            td {
+                .form-name{
+                    text-decoration: none;
+                    color:#05c46e
+                }
+            }
+            margin-top:50px;
+            background-color: transparent !important;
+            width: 100%;
+            padding:10px;
+            thead {
+                border-bottom:1.5px solid #222630;
+                margin-bottom:20px;
+            }
+            .dropdown-toggle {
+                content: '';
+                border-radius:5px;
+                border:1.5px solid #1f232c;
+                background-color: transparent;
+                outline: none;
+                width:14%;
+                
+                color:white;
+                text-align: center;
+                margin:0 auto;
+                margin-right:0px;
+                font-size:1.2rem;
+                padding-right:0px;
+                &::after{
+                    content:'';
+                    border:none;
+                }
+            }
+        }
+    }
+}

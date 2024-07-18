@@ -1,0 +1,103 @@
+:host {
+    .selected {
+        color:#08c964 !important;
+        font-weight: bold;
+    }
+    .container-header {
+        position: relative;
+        width: 100% !important;
+        height: 50px;
+        background-color: #222630;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #1a1d25bd;
+
+        .name {
+            margin-top:15px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding-left: 30px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+
+            i {
+                padding-right: 20px;
+                font-size: 1.1rem;
+                transition: transform 0.3s ease-in-out;
+
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                i {
+                    transition: .3s;
+                    transform: translateX(-10px);
+                }
+            }
+        }
+
+        .navbar {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0;
+
+            .navbar-nav {
+                display: flex;
+                align-items: center;
+            }
+
+            .nav-item {
+                margin: 0 10px;
+            }
+
+            .nav-link {
+                color: white;
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-link:hover {
+                color: #ddd;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+
+            .dropdown-toggle {
+                padding: 5px;
+                border-radius: 5px;
+                box-shadow: none;
+                outline: none;
+                border-color: transparent;
+                color: #ffffff;
+                background-color: #ffffff07;
+            }
+
+            .dropdown-menu {
+                width: auto !important;
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+}

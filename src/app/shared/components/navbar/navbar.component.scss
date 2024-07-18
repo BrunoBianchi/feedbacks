@@ -1,0 +1,78 @@
+:host {
+    .dropdown-menu {
+        border-radius:4px;
+        margin-top:10px;
+        p{
+            margin-top:-5px;
+          &:nth-child(2) {
+            margin-top:-28px;
+            margin-bottom:-10px;
+            font-size:0.8rem;
+          }
+          &:nth-child(1) {
+            font-weight: 600;
+          }
+        }
+    }
+    .navbar {
+        background-color: transparent !important;
+        padding:10px 20px 10px 20px;
+        border-bottom:1.5px solid #222630;
+        .navbar-brand {
+            color:white;
+            font-weight: 700;
+            font-size: 1.6rem;
+        }
+       .nav-link{
+        color:#a6adbb;
+        font-weight: 600;
+        &:hover {
+            color:#757a86;
+        }
+       }
+       .avatar {
+        padding:9px 14px 9px 14px;
+        border-radius: 100%;
+        background-color: #05c46b38;
+        color:#05c46b;
+        font-weight: 400;
+        &:hover {
+            cursor:pointer;
+        }
+       }
+    }
+    .get-started{
+        padding:10px 20px 10px 20px;
+        border-radius:7px;
+        background-color: #05c46b;
+        text-decoration: none;
+        color:#ffffff;
+        font-weight: 600;
+        transition: .2s;
+        &:hover {
+            transition: .2s;
+            cursor:pointer;
+            background-color: #05b362;
+            i {
+                transform: translateX(5px);
+                transition: .3s;
+            }
+            transition: .3s;
+            transform: translateX(0px);
+        }
+    }
+    .login {
+        padding:10px 20px 10px 20px;
+        text-decoration: none;
+        font-weight: 600;
+        color:#a6adbb;
+        transition: .2s;
+        border-radius:7px;
+        margin-right:10px;
+        &:hover {
+            cursor:pointer;
+            transition: .2s;
+            background-color: #2a303c;
+        }
+    }
+}

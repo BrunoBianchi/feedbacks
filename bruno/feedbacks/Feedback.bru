@@ -1,0 +1,18 @@
+meta {
+  name: Feedback
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:3000/api/v1/feedback/send-feedback
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email":"bruno2002.raiado@gmail.com",
+    "feedback":"I recommend conducting a thorough review of the website's links and implementing regular checks to ensure all links direct users to the correct pages, enhancing the reliability and user experience of the site."
+  }
+}

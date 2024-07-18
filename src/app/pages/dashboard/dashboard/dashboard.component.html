@@ -1,0 +1,59 @@
+<div class="container-header">
+    <p class="name">
+        {{user?.name}}'s Dashboard
+    </p>
+
+    <div class="buttons">
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Get Support</a></li>
+                <li><a class="dropdown-item" href="#">Create Form</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+
+
+    <div class="container-table">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Website</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (form of forms |async; track $index) {
+
+                <tr>
+                    <td><a class="form-name" routerLink="/dashboard/{{form.id}}/overview">{{form.url}}</a></td>
+                    <td>{{form.status}}</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle dropdown-menu-end" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                ...
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Get Support</a></li>
+                                <li><a class="dropdown-item" href="#">Delete Website</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                }@empty {
+                <p>No Form Created Yet!</p>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

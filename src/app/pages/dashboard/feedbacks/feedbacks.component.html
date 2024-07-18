@@ -1,0 +1,93 @@
+<app-header-info-bar></app-header-info-bar>
+<div class="container">
+    <div class="container-table">
+        <div class="tools">
+            <div class="tool">
+                <span><i class="fa-solid fa-file-arrow-down"></i> Export CSV</span>
+            </div>
+        </div>
+        <hr>
+        <div class="filters">
+            <div class="filter">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                </div>
+
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <i class="fa-solid fa-filter" data-bs-toggle="dropdown"></i>
+
+                    <ul class="dropdown-menu p-3" aria-labelledby="filterDropdown">
+                        <li class="mb-3">
+                            <label for="emailVerified" class="form-label">FeedBack Type</label>
+                            <select (change)="filterRatingType($event)" class="form-select" id="emailVerified">
+                                <option selected value="all">All</option>
+                                <option value="positive">Positive</option>
+                                <option value="negative">Negative</option>
+                            </select>
+                        </li>
+                        <li class="mb-3">
+                            <label for="createdFrom" class="form-label">Created from</label>
+                            <div class="input-group">
+                                <input (change)="filterCreatedFrom($event)" type="date" class="form-control"
+                                    id="createdFrom">
+                            </div>
+                        </li>
+                        <li class="mb-3">
+                            <label for="createdUntil" class="form-label">Created until</label>
+                            <div class="input-group">
+                                <input (change)="filterCreatedUntil($event)" type="date" class="form-control"
+                                    id="createdUntil" [valueAsDate]="Today">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <hr>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Rating <span class="rating-filter" (click)="filterRating()"><i
+                                class="fa-solid fa-up-long"></i> <i class="fa-solid fa-down-long"></i></span>
+                    </th>
+                    <th scope="col">Created At</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (feedback of filterFeedbacks; track $index) {
+                <tr>
+                    <td><a class="form-name">{{feedback.user}}</a></td>
+                    <td class="comments">
+                        <p>{{feedback.comments[0]}}</p>
+                    </td>
+                    <td class="rating" [ngClass]="{'positive':feedback.rating>3,'negative':feedback.rating<=3}">
+                        <p>{{feedback.rating}}
+                        </p>
+                    </td>
+                    <td>
+                        <p>{{feedback.createdAt}}</p>
+                    </td>
+                </tr>
+                }
+
+
+
+
+            </tbody>
+        </table>
+        @if(filterFeedbacks.length <= 0) { <p class="no-feedback">No feedbacks yet 🥲</p>
+
+            }
+    </div>
+
+</div>

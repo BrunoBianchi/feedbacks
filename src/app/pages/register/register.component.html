@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="title">
+        <p>Sign up for free 🤗</p>
+        <p>Enjoy your 7-Day <span>FREE TRAIL</span></p>
+    </div>
+
+    <div class="register-card">
+        <form [formGroup]="registerForm" (submit)="signUp()">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <input formControlName="name" type="email" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Love">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Love@gmail.com">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                <input formControlName="password" type="email" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Love">
+            </div>
+            <button [ngClass]="{'disabled':!registerForm.valid}" class="sign-up" [disabled]="!registerForm.valid"
+                type="submit">SIGN UP</button>
+        </form>
+        <p>By signing up, you agree to our <a [routerLink]="['/TOS']">TOS</a> & <a [routerLink]="['/PP']">Privacy
+                Polic</a>y</p>
+
+    </div>
+    <div class="footer-card">
+        <p>Already have an account? <a [routerLink]="['/login']">Log in</a></p>
+    </div>
+</div>

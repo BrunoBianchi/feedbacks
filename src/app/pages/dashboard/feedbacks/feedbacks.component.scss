@@ -1,0 +1,166 @@
+.container-table {
+    .dropdown-menu {
+        width: 350px; /* Aumente a largura conforme necessário */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        left:-200px !important;
+        top:30px !important;
+        position: fixed;
+        right:auto !important; /* Posiciona o dropdown mais para a esquerda */
+        .form-label {
+            font-weight: 500;
+          }
+          
+          .input-group-text {
+            background-color: #f1f1f1;
+            border: none;
+          }
+          
+          .input-group .form-control {
+            border-right: 0;
+            color:black;
+          }
+          
+          .input-group .input-group-text {
+            border-left: 0;
+          }
+          
+          .dropdown-toggle {
+            background-color: #28a745;
+            color: white;
+            border: none;
+          
+            &:hover {
+              background-color: #218838;
+            }
+          
+            i {
+              margin-right: 0;
+            }
+          }
+      }
+      
+
+      
+    width:95%;
+    margin:0 auto;
+    margin-top:20px;
+    background-color: #222630;
+    border-radius:30px;
+    padding:10px 40px 10px 40px;
+    hr{
+        margin-top:-1px;
+        color:#a4a4a451;
+    }
+    .tools {
+        display: flex;
+        justify-content: right;
+        .tool {
+            margin-right:25px;
+            margin-bottom:10px;
+            font-weight: 400;
+        }
+    }
+    .filters{
+        
+        display: flex;
+        justify-content: right;
+        .filter{
+            .input-group-text {
+                background-color: transparent;
+                border-right: none;
+            }
+            input {
+                border-left: none;
+                background-color: transparent;
+                color:white;
+            }
+            margin-right:20px;
+            .fa-filter{
+                margin-top:10px;
+            }
+            i{
+                
+                color:#05c46e
+            }
+        }
+    }
+    .no-feedback{
+        font-size:2.3rem;
+        text-align: center;
+        margin: 0 auto;
+        width:100%;
+        font-weight: 500;
+        margin-top:50px;
+    }
+    table  {
+        .filter {
+            width:20px;
+            text-align: center;
+        }
+        .rating-filter {
+            font-size:13px;
+            margin-left:10px;
+            font-weight: 400;
+            &:hover {
+                color:rgb(154, 154, 154);
+                cursor: pointer;
+            }
+        }
+        .comments {
+            p{
+                max-height: 200px;
+                overflow:auto;
+                font-size:15px;
+                padding:10px;
+            }
+            max-width:300px;    
+
+        }
+        .rating {
+            padding:10px;
+            font-size:1.2rem;
+            &.positive {
+                color:#5dc672;
+            }
+            &.negative {
+                color:#c65d5d;
+            }
+        }
+
+        td {
+            .form-name{
+                text-decoration: none;
+                color:#05c46e;
+                padding:10px;
+            }
+        }
+        margin-top:50px;
+        background-color: transparent !important;
+        width: 100%;
+        padding:10px;
+        thead {
+            border-bottom:1.5px solid #3f465786;
+            margin-bottom:20px;
+        }
+        .dropdown-toggle {
+            content: '';
+            border-radius:5px;
+            border:1.5px solid #1f232c;
+            background-color: transparent;
+            outline: none;
+            width:14%;
+            
+            color:white;
+            text-align: center;
+            margin:0 auto;
+            margin-right:0px;
+            font-size:1.2rem;
+            padding-right:0px;
+            &::after{
+                content:'';
+                border:none;
+            }
+        }
+    }
+}

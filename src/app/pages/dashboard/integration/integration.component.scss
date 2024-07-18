@@ -1,0 +1,193 @@
+:host {
+    .embed {
+        margin-top:50px;
+   
+        .preview {
+            position: sticky;
+            top: 30px;
+            width:100%;
+            padding:20px;
+            .form {
+                background-color: rgba(255, 255, 255, 0.9);
+                color: black;
+                padding: 15px;
+                border-radius: 8px;
+                width: 100%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+          
+                .title {
+                  display: flex;
+                  justify-content: space-between;
+                  width: 100%;
+                  font-size: 14px; // Reduzindo o tamanho da fonte
+                  margin-bottom: 10px;
+          
+                  .close-btn {
+                    cursor: pointer;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: black;
+                  }
+                }
+          
+                .body {
+                  width: 100%;
+                  
+                  label {
+                    font-size: 12px; // Reduzindo o tamanho da fonte
+                    margin-top: 10px;
+                    display: block;
+                  }
+          
+                  input,
+                  textarea {
+                    display: block;
+                    width: 100%;
+                    border-radius: 3px;
+                    background-color: white;
+                    border: 1px solid rgb(218, 218, 218);
+                    padding: 8px; // Reduzindo o padding
+                    font-size: 12px; // Reduzindo o tamanho da fonte
+                    margin-bottom: 10px;
+                    box-shadow: none;
+                    outline: none;
+                  }
+          
+                  textarea {
+                    height: 60px; // Reduzindo a altura do textarea
+                    resize: vertical;
+                  }
+                }
+          
+                .emoji-rating {
+                  display: flex;
+                  justify-content: space-between;
+                  width: 100%;
+                  padding: 10px 0;
+          
+                  span {
+                    font-size: 20px; // Reduzindo o tamanho dos emojis
+                    cursor: pointer;
+                    padding: 0 5px;
+                    opacity: 0.5;
+                    transition: transform 0.3s, opacity 0.3s;
+          
+                    &:hover,
+                    &.selected {
+                      opacity: 1;
+                      transform: scale(1.2);
+                    }
+                  }
+                }
+          
+                .modal-footer {
+                  text-align: center;
+                  width: 100%;
+                  
+                  button {
+                    cursor: pointer;
+                    padding: 8px 16px; // Reduzindo o padding do botão
+                    background-color: #05c46b;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 14px; // Reduzindo o tamanho da fonte do botão
+                    width: 100%;
+                    font-weight: 600;
+          
+                    &:hover {
+                      background-color: #04b361;
+                    }
+                  }
+                }
+              }
+        }
+        .controlls {
+            background-color: #222630;
+            width:60%;
+            height:1000px;
+            padding:10px 40px 10px 40px;
+            border-radius:20px;
+            margin-top:30px;
+            p {
+                &:nth-child(1) {
+                    font-size:1.3rem;
+                }
+                &:nth-child(2) {
+                    font-size:1.1rem;
+                }
+            }
+        }
+    }
+    .links {
+        display: flex;
+        width:100%;
+        justify-content: left;
+        margin-top:20px;
+        .link {
+            &.selected {
+                background-color:  #10b981;
+                &:hover {
+                    background-color:  #0c8e63;
+                }
+            }
+            margin-right:20px;
+            padding:5px 15px 5px 15px;
+            background-color: #222630;
+            color:white;
+            &:hover {
+                background-color: #1b1e25;
+                cursor: pointer;
+            }
+            border-radius:30px;
+        }
+    }
+    .instructions {
+        width:70%;
+        margin:0 auto;
+        margin-top:230px !important;
+        background-color: #222630;
+        border-radius:30px;
+        padding:40px 50px 20px 40px;
+    }
+    pre {
+        background-color: #161c26;
+        padding: 10px;
+        border-radius: 5px;
+        overflow: auto;
+        width:100%;
+        white-space: pre-wrap;
+        position: relative;
+      }
+      
+      code {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1em;
+        .token {
+            .tag {
+                color:#b32844 !important;
+            }
+        }
+      }
+      
+      .copy-button {
+        background: #f8f8f20c;
+        border: none;
+        color: #ffffff;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 0.8em;
+      }
+      
+      .copy-button:hover {
+        background: #e0e0e009;
+      }
+      
+      
+      
+
+}

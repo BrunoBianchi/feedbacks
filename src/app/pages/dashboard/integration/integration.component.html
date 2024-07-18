@@ -1,0 +1,65 @@
+<app-header-info-bar></app-header-info-bar>
+
+<div class="container">
+    <div class="links">
+        <div class="link selected">Embed Form</div>
+        <div class="link">Custom Form</div>
+        <div class="link">Review Widget</div>
+    </div>
+
+    <div class="embed">
+        <p><strong>Integrate with embed code</strong></p>
+        <p>Integrating using embed is the easiet and quickest way to show the signup form on your website. Customize the
+            widget and follow the below steps to integrate on your website.</p>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="controlls">
+                    <p>Customize widget</p>
+                    <p>a</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="preview">
+                    <div class="form">
+                        <div class="title">
+                            <!-- TODO Adicionar sistema de mover com angular material todo esse codigo ira para o ts! -->
+                            <!-- TODO adicionar hover em diferentes partes do form para que quando clicar ir direto no custom widget -->
+                            <span>Your Feedback is crucial ❤</span>
+                            <span class="close-btn">X</span>
+                        </div>
+                        <div class="body">
+                            <label for="emailInput">Email</label>
+                            <input type="text" id="emailInput" placeholder="Your email..." value="this.test@gmail.com">
+                            <label for="feedbackInput">Feedback</label>
+                            <textarea id="feedbackInput" placeholder="Please write your feedback here..."></textarea>
+                        </div>
+                        <div class="emoji-rating">
+                            <span data-value='1'>😔</span>
+                            <span data-value='2'>😐</span>
+                            <span data-value='3'>😊</span>
+                            <span data-value='4'>😁</span>
+                            <span data-value='5'>🤩</span>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button>
+                                Send Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container mt-5 instructions">
+    <p>Instructions</p>
+    <p>1. Copy and paste the below code in the
+        section < head>
+    </p>
+    <div class="code-container">
+        <pre><code class="language-markup">{{ codeSnippet }}</code></pre>
+        <button class="copy-button" (click)="copyCode()"><i class="fa-solid fa-copy"></i> Copy code</button>
+    </div>
+</div>

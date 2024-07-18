@@ -1,0 +1,40 @@
+@if(showInformation) {
+<app-header-info-bar></app-header-info-bar>
+
+<div class="container">
+    <p class="hello">Hello {{user?.name}} 👋
+    </p>
+    <div class="cards">
+        <div class="card">
+            <p>{{feedbacks.length}}</p>
+            <p>Feedbacks in total</p>
+        </div>
+        <div class="card">
+            <p>{{positiveFeedbacks.length}}</p>
+            <p>Positive Feedbacks</p>
+        </div>
+        <div class="card">
+            <p>{{negativeFeedbacks.length}}</p>
+            <p>Negative Feedbacks</p>
+        </div>
+        <div class="card">
+            <p>{{feedbacksToday.length}}</p>
+            <p>Feedbacks Today</p>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="integration-card" [routerLink]="['/dashboard',form.id,'integration']"><i
+                class="fa-solid fa-code"></i> Integrate the form to your website</div>
+        <div class="integration-card" (click)="navigateToFragment('metrics')"><i class="fa-solid fa-chart-line"></i>
+            Metrics </div>
+        <div [routerLink]="['/dashboard',form.id,'feedbacks']" class="integration-card"><i
+                class="fa-solid fa-comments"></i> View Feedbacks </div>
+        <div class="integration-card"><i class="fa-solid fa-gears"></i> Settings</div>
+    </div>
+</div>
+
+<div id="metrics" style="margin-top: 1000px;">
+    a
+</div>
+}

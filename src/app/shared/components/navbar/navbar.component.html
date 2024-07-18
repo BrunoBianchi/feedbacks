@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="['/']">FeedBacks</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            @if(!user) {
+            <div class="d-flex">
+                <a [routerLink]="['/sign-up']" class="get-started">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            }@else {
+            <div class="d-flex">
+                <div class="dropdown">
+                    <span data-bs-toggle="dropdown" aria-expanded="false"
+                        class="avatar">{{user.name.slice(0,1).toUpperCase()}}</span>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <p class="dropdown-item">{{user.name}}</p>
+                            <p class="dropdown-item">{{user.email}}</p>
+                        </li>
+                        <hr>
+                        <li><a class="dropdown-item" [routerLink]="['/dashboard']">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+    <hr>
+</nav>

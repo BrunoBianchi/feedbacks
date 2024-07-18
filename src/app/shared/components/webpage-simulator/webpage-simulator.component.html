@@ -1,0 +1,38 @@
+<div class="webpage-simulation">
+    <div class="browser-header">
+        <i class="fa-solid fa-circle"></i>
+        <i class="fa-solid fa-circle"></i>
+        <i class="fa-solid fa-circle"></i>
+        <span class="url"><i class="fa-solid fa-magnifying-glass"></i> https://feedbacks.com</span>
+    </div>
+    <div class="container">
+        <div class="form">
+            <div class="title">
+                <span>Your Feedback is crucial ❤</span>
+                <span class="close-btn">X</span>
+            </div>
+            <div class="body">
+                <label for="emailInput">Email</label>
+                <input type="text" id="emailInput" placeholder="Your email..." value="this.test@gmail.com">
+                <label for="feedbackInput">Feedback</label>
+                <textarea id="feedbackInput" [(ngModel)]="feedbackValue"
+                    placeholder="Please write your feedback here...">{{feedbackValue}}</textarea>
+            </div>
+            <div class="emoji-rating">
+                <span data-value='1'>😔</span>
+                <span data-value='2'>😐</span>
+                <span data-value='3'>😊</span>
+                <span data-value='4'>😁</span>
+                <span data-value='5'>🤩</span>
+            </div>
+            <span class="message" [ngClass]="{'invalid':response == 'false','valid':response=='true'}">
+                {{response=='false'?'Invalid Feedback!':'Feedback sent!'}}
+            </span>
+            <div class="modal-footer">
+                <button (click)="verifyFeedback()"
+                    [ngClass]="{'invalid':response == 'false' , 'valid':response == 'true'}">
+                    Send Feedback</button>
+            </div>
+        </div>
+    </div>
+</div>

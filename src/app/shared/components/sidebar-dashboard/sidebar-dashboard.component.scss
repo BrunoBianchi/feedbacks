@@ -1,0 +1,58 @@
+/* Estilos para o sidebar */
+.sidebar {
+  background-color: #f8f9fa;
+  height: 100vh;
+}
+
+.nav-link.active {
+  background-color: #e9ecef;
+  color: #000;
+}
+
+.nav-link:hover {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.offcanvas-title {
+  font-size: 1.5rem;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid #e9ecef;
+}
+
+/* Ocultar sidebar em telas pequenas */
+@media (max-width: 991px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Mostrar navbar e offcanvas em telas pequenas */
+@media (max-width: 991px) {
+  .navbar {
+    display: flex;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    display: none;
+  }
+}

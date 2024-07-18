@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #242933;
+    color:#a6adbb;
+    font-family: "Roboto Condensed", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.05em;
+}
+.dropdown {
+    border-radius:3px;
+}
+
+html {
+    scroll-behavior: smooth;
+  }

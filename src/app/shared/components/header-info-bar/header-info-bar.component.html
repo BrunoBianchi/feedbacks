@@ -1,0 +1,40 @@
+<div class="container-header">
+    <p class="name" routerLink="/dashboard">
+        <i class="fa-solid fa-angle-left"></i> {{form.url}}
+    </p>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid justify-content-center">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/dashboard', form.id, 'overview']"
+                            [routerLinkActive]="['selected']">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/dashboard', form.id, 'integration']"
+                            [routerLinkActive]="['selected']">Integration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/dashboard', form.id, 'feedbacks']"
+                            [routerLinkActive]="['selected']">Feedbacks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="buttons">
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Get Support</a></li>
+                <li><a class="dropdown-item" href="#">Delete Website</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

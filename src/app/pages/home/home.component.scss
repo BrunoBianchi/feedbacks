@@ -1,0 +1,235 @@
+:host {
+    a{
+        text-decoration: none;
+        &:nth-child(2) {
+            color:#a6adbb;
+        }
+    }
+    .container {
+        .title-section {
+            text-align: center;
+            code {
+                color:#08c964;
+                font-size:1rem;
+                text-align: left;
+            }
+            
+            p {
+                text-align: center;
+                font-size:2.3rem;
+                font-weight: 800;
+            }
+        }
+
+        .cards {
+            width:90%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-evenly;
+            margin-top:50px;
+            ul {
+                list-style: none;
+                padding:10px;
+                margin-top:-30px;
+                li {
+                    svg {
+                        width:20px;
+                     
+                        &.red {
+                            color:#c90808;
+                        }
+                        &.green {
+                            color:#08c964;
+                        }
+                    }
+                }
+            }
+            .title {
+                font-size:1.3rem;
+                text-align: left;
+                padding:20px;
+            }
+            .card-red {
+                width:40%;
+                padding:20px;
+                background-color: #2a303c;
+                border-radius:7px;
+
+            }
+            .card-green {
+                width:40%;
+                padding:20px;
+                background-color: #2a303c;
+                border-radius:7px;
+
+            }
+        }
+        margin-top:130px;
+        .section {
+            width:70%;
+            margin: 0 auto;
+            .as-seen-on {
+                display: flex;
+                flex-wrap: wrap; /* Permite que os itens mudem de linha conforme o espaço disponível */
+                align-items: center; /* Alinha os itens verticalmente no centro */
+                gap: 10px; /* Espaçamento entre os itens */
+                color:#a6adbb;
+            }
+            
+            .as-seen-on img {
+                margin-right:10px;
+                flex: 1 1 auto; /* Permite que as imagens ocupem o espaço disponível */
+                max-width: 128px; /* Largura máxima para cada logo */
+                height: 24px; /* Altura automática para manter a proporção */
+                filter: grayscale(100%) brightness(100%) invert(1); /* Aplica o filtro de cinza, brilho e inversão */
+                opacity: 0.75; /* Opacidade das imagens */
+            }
+            
+        }
+    }
+    .arrow {
+        width:100px;
+        height: 100px;
+    }
+    .description {
+        margin-top:30px;
+        p {
+            margin-top:-10px;
+        }
+    }
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        width:50%;
+
+        a {
+            margin-top:10px;
+            font-weight: 600;
+            cursor:pointer;
+        }
+        a:nth-child(1) {
+            padding:10px 15px 10px 15px;
+            background-color: #08c964;
+            border-radius:5px;
+            color:white;
+            font-size:17px;
+            width:80%;
+            text-align: center;
+            &:hover {
+                background-color: #0ad76d;
+
+            }
+        }
+        a:nth-child(2) {
+            padding:10px 15px 10px 15px;
+            border-radius:5px;
+            font-size:17px;
+            width:80%;
+            text-align: center;
+            transition: .2s;
+            &:hover {
+                background-color: #3e444e;
+                transition: .4s;
+            }
+
+        }
+    }
+    .apply {
+        width:20px;
+        height:20px;
+        color:#08c964;
+        margin-top:-3px;
+    }
+    .title-middle {
+        font-size:3rem;
+        font-weight: 800;
+        text-align: center;
+    }
+    .description-middle {
+        font-size:2.5rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    .title {
+        font-size:20px;
+        letter-spacing: -.025em;
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 800;
+        .background {
+            padding:1.5px;
+            background-color: #08c9659c;
+            z-index: -1;
+            position: absolute;
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;  
+            transform: rotate(-2deg);
+            &.red{
+                background-color: #c91b089c;
+            }
+        }
+        p:nth-child(1) {
+            color:#a6adbb;
+            z-index: 1;
+        }
+           p:nth-child(2) {
+            color:#08c964;
+            font-size:2.5rem;
+            margin-top:-10px;
+            &.red{
+                font-weight: 500;
+                color:#c90808;
+                font-size:2rem;
+            }
+        }     
+    }
+    .emojis {
+        display: flex;
+        font-size:35px;
+        justify-content: space-between;
+        span {
+            justify-content: space-between;
+            opacity: 0.6;
+            transition: .2s;
+
+            &:hover {
+                opacity: 1;
+                cursor:pointer;
+                transition: .4s;
+                transform: scale(1.2);
+            }
+
+        }
+        @keyframes rise-and-fall {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-20px); opacity: 0.7; }
+          }
+          
+          span {
+            display: inline-block;
+            animation: rise-and-fall 2s ease-in-out infinite;
+          }
+          
+          span[data-value='1'] {
+            animation-delay: 0s;
+          }
+          
+          span[data-value='2'] {
+            animation-delay: 0.4s;
+          }
+          
+          span[data-value='3'] {
+            animation-delay: 0.8s;
+          }
+          
+          span[data-value='4'] {
+            animation-delay: 1.2s;
+          }
+          
+          span[data-value='5'] {
+            animation-delay: 1.6s;
+          }
+          
+    }
+}

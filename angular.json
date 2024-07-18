@@ -37,9 +37,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/prismjs/themes/prism-tomorrow.css"  
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/prismjs/components/prism-core.min.js",
+              "node_modules/prismjs/components/prism-markup.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-clike.min.js",
+              "node_modules/prismjs/components/prism-javascript.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -67,9 +74,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "./proxy.config.json"
+
+          },
           "configurations": {
+ 
             "production": {
-              "buildTarget": "feedbacks:build:production"
+              "buildTarget": "proxy-for-angular:build:production"
             },
             "development": {
               "buildTarget": "feedbacks:build:development"
