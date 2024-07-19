@@ -1,0 +1,28 @@
+.drag {
+    padding:6px;;
+    &:hover {
+        cursor: pointer;
+        border:2px dashed rgb(199, 198, 198);
+        border-radius:5px;
+    }
+}
+
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+ .placeholder {
+    background: #ccc;
+    border: dotted 3px #999;
+    width:100%;
+    opacity: .4;
+    min-height: 60px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+.input-editor {
+  padding:5px;
+  border-radius:5px;
+  outline: none;
+  border-color:transparent;
+}

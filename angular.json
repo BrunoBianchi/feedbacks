@@ -37,8 +37,9 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss",
-              "node_modules/prismjs/themes/prism-tomorrow.css"  
+              "node_modules/prismjs/themes/prism-tomorrow.css"
             ],
             "scripts": [
               "node_modules/prismjs/components/prism-core.min.js",
@@ -109,6 +110,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
             "scripts": []

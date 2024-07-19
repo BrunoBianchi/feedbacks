@@ -18,7 +18,10 @@ import { WebpageSimulatorComponent } from './shared/components/webpage-simulator
 import { IntegrationComponent } from './pages/dashboard/integration/integration.component';
 import { SkeletonLoadingComponent } from './shared/components/skeleton-loading/skeleton-loading.component';
 import { FeedbacksComponent } from './pages/dashboard/feedbacks/feedbacks.component';
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormBuilderComponent } from './shared/components/form-builder/form-builder.component';
+import { HtmlPipe } from './shared/pipes/html.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,16 +38,20 @@ import { FeedbacksComponent } from './pages/dashboard/feedbacks/feedbacks.compon
     IntegrationComponent,
     SkeletonLoadingComponent,
     FeedbacksComponent,
-
+    FormBuilderComponent,
+    HtmlPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DragDropModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

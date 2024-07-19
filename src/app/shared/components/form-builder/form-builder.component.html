@@ -1,0 +1,11 @@
+@if(show) {
+<div cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="form" [style]="form.css">
+        <div *ngFor="let component of form.form" class="drag" cdkDrag>
+            <div [innerHTML]="component| html"></div>
+            <div class="placeholder" *cdkDragPlaceholder></div>
+
+        </div>
+    </div>
+</div>
+}

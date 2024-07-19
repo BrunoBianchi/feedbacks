@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Website" ALTER COLUMN "form" SET DEFAULT ARRAY['']::STRING[];

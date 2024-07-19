@@ -57,20 +57,22 @@ export class CrudeService {
         return form;
     }
 
-    public async createFormWebsite(token: string, params: { url: string, form: string }) {
+    public async createFormWebsite(token: string, params: { url: string }) {
         if (!token) {
+            console.log("a")
             throw "Permission Denied!"
         }
         if (await this.findFormWebsite(params.url)) {
             throw "website url already registered!"
         }
         if (!await this.findUserById(token)) {
+
             throw "Permission Denied!"
         }
         try {
             const website = await prisma.website.create({
                 data: {
-                    form: "",
+
                     url: params.url,
                     userId: token
                 }
@@ -78,6 +80,7 @@ export class CrudeService {
 
             return website;
         } catch (err) {
+            console.log(err)
             throw "Permission Denied!"
         }
 
@@ -108,6 +111,24 @@ export class CrudeService {
             }
         }) || null;
         return form;
+    }
+
+    public async updateForm(formID: string, params: { form: string[], css: string }) {
+        const form = await prisma.website.findFirst({
+            where: {
+                id: formID
+            }
+        })
+        if (!form) throw "not found!";
+        form.css = params.css;
+        form.form = params.form;
+        const newForm = await prisma.website.update({
+            where: {
+                id: formID
+            },
+            data: form
+        })
+        return newForm;
     }
 
     public async getFeedbackByEmailFromWebsite(formID: string, user: string) {

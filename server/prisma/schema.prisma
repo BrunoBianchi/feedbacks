@@ -23,10 +23,11 @@ model User {
 }
 
 model Website {
-  id        String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   url       String
-  form      String
-  status String @default("Pending Verification")
+  form      String[] @default(["<div class='title'><span style='font-size: 14px;'>Your Feedback is crucial ❤</span><span class='close-btn'>X</span></div>","<div class='body'><label for='emailInput' style='font-size: 12px;'>Email</label><input type='text' id='emailInput' placeholder='Your email...' style='width: 100%; border-radius: 3px; background-color: white; border: 1px solid rgb(218, 218, 218); padding: 8px; font-size: 12px; margin-bottom: 10px; box-shadow: none; outline: none;' value='this.test@gmail.com'></div>","<div class='body'><label for='feedbackInput' style='font-size: 12px;'>Feedback</label><textarea id='feedbackInput' placeholder='Please write your feedback here...' style='width: 100%; border-radius: 3px; background-color: white; border: 1px solid rgb(218, 218, 218); padding: 8px; font-size: 12px; margin-bottom: 10px; box-shadow: none; outline: none; height: 60px; resize: vertical;'></textarea></div>","<div class='emoji-rating'><span data-value='1' style='font-size: 20px; opacity: 0.5; transition: transform 0.3s, opacity 0.3s; cursor: pointer; padding: 0 5px;'>😔</span><span data-value='2' style='font-size: 20px; opacity: 0.5; transition: transform 0.3s, opacity 0.3s; cursor: pointer; padding: 0 5px;'>😐</span><span data-value='3' style='font-size: 20px; opacity: 0.5; transition: transform 0.3s, opacity 0.3s; cursor: pointer; padding: 0 5px;'>😊</span><span data-value='4' style='font-size: 20px; opacity: 0.5; transition: transform 0.3s, opacity 0.3s; cursor: pointer; padding: 0 5px;'>😁</span><span data-value='5' style='font-size: 20px; opacity: 0.5; transition: transform 0.3s, opacity 0.3s; cursor: pointer; padding: 0 5px;'>🤩</span></div>","<div class='modal-footer'><button style='cursor: pointer; padding: 8px 16px; background-color: #05c46b; color: white; border: none; border-radius: 5px; font-size: 14px; width: 100%; font-weight: 600;' >Send Feedback</button></div>"])
+  css       String   @default("background-color: rgba(255, 255, 255, 0.9);color: black;padding: 15px;border-radius: 8px;width: 100% !important;height:400px;margin:0 auto;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);")
+  status    String   @default("Pending Verification")
   feedbacks Feedback[]
   User      User?       @relation(fields: [userId], references: [id])
   userId    String?     @db.Uuid

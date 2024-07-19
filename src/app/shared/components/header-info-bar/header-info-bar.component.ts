@@ -11,10 +11,11 @@ import { firstValueFrom } from 'rxjs';
 })
 export class HeaderInfoBarComponent {
   constructor(private formService: FormsService, private router: ActivatedRoute) { }
-
+  public showInfo: boolean = false;
 
   public form!: Form;
   async ngOnInit() {
     this.form = await firstValueFrom(this.formService.getFormById(this.router.snapshot.params['id']));
+    this.showInfo = true;
   }
 }

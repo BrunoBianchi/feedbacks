@@ -12,17 +12,29 @@ import * as Prism from 'prismjs';
 })
 export class IntegrationComponent {
   constructor(private formService: FormsService, private router: ActivatedRoute) { }
-
+  public show: boolean = false;
 
   public form!: Form;
   async ngOnInit() {
     this.form = await firstValueFrom(this.formService.getFormById(this.router.snapshot.params['id']));
+    this.show = true;
   }
+
+  public changeForm(event: Form) {
+    console.log(event.form[0])
+  }
+
+
 
   codeSnippet = '<script src="http://feedbacks.com/libs/form-widget.js" defer></script>';
 
   ngAfterViewInit() {
     Prism.highlightAll();
+  }
+
+  public async saveChanges() {
+    console.log(this.form.form[0])
+    await this.formService.updateForm(this.router.snapshot.params['id'], this.form).subscribe(console.log)
   }
   copyCode() {
     const codeElement = document.querySelector('pre code');

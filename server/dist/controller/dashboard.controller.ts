@@ -11,8 +11,7 @@ dashboard.post('/create-form', async (req: Request, res: Response) => {
     try {
         const params = z.object({
             url: z.string(),
-            form: z.string(),
-        }).required({ url: true, form: true, }).parse(req.body)
+        }).required({ url: true, }).parse(req.body)
         const token = jwt.decryptJwtToken(req.headers.authorization!.split("Bearer")[1])
         const websiteForm = await crude.createFormWebsite((token.id || null) as string, params);
         return res.json({ id: websiteForm.id });
@@ -52,6 +51,22 @@ dashboard.get('/form/:id/feedbacks', ownerMiddleware, async (req: Request, res: 
         }).required({ id: true }).parse(req.params);
         const feedbacks = await crude.getAllFeedbacks(params.id);
         return res.json(feedbacks);
+    } catch (err) {
+        return res.status(400).json({ error: err })
+    }
+});
+
+
+
+dashboard.put('/form/:id/update-form', ownerMiddleware, async (req: Request, res: Response) => {
+    try {
+        const params = z.object({
+            form: z.array(z.string()),
+            css: z.string()
+        }).required({ form: true, css: true }).parse(req.body);
+        const formId = req.params.id;
+        const newForm = await crude.updateForm(formId, params)
+        return res.json("Form Mudado");
     } catch (err) {
         return res.status(400).json({ error: err })
     }

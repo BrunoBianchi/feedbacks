@@ -26,4 +26,12 @@ export class FormsService {
       }
     })
   }
+
+  public updateForm(id: string, form: Form) {
+    return this.http.put<any>(`api/v1/dashboard/form/${id}/update-form`, form, {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+  }
 }

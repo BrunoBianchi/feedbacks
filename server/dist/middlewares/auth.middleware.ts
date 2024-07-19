@@ -15,6 +15,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
         return next();
 
     } catch (err) {
+        console.log(err)
         return res.status(400).send("Permission Denied!");
     }
 

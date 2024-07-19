@@ -3,6 +3,8 @@ export const router: express.Router = express.Router();
 import { GenerateData } from "../services/GenerateData.service";
 const generator = new GenerateData();
 import * as uglifyJS from 'uglify-js';
+import { CrudeService } from "../services/Crude.service";
+const crude = new CrudeService();
 import CleanCSS from 'clean-css'; // Importação da biblioteca
 const cleaner = new CleanCSS({
     level: {
@@ -10,47 +12,51 @@ const cleaner = new CleanCSS({
         2: { all: true }  // Nível 2 de otimizações (reestruturação)
     }
 });
-router.get('/form-widget.js', (req: Request, res: Response) => {
+router.get('/form-widget.js', async (req: Request, res: Response) => {
+    //TODO Melhorar Sistema de router do form-widget, torna-lo mais dinamico com a geracao do form 
+    //TODO Arrumar Todo css e scripts dos modais
+    //TODO Arrumar sistema de envio para o backend, precisa verificar agora os components que possuem input
+    //TODO Arrumar Deixar form em formado de form mesmo para melhorar o envio e a customizacao?
     res.setHeader('Content-Type', 'text/javascript');
+    const url = req.headers.host;
+    console.log(url)
+    const form = await crude.findFormWebsite(url || "")
+    if (!form) return res.sendStatus(404);
 
-    const modalHTML = `
-        <div class="modal-background" id="modalBackground">
-            <div class="modal-container">
-                <div class="modal-header">
-                    <span>Your feedback is crucial ❤</span>
-                    <button id="closeModal">X</button>
-                </div>
-                <div class="modal-content">
-                    <label>Email</label>
-                    <input type="email" placeholder="Your email..." id="emailInput" required>
-                    <div class="error-message" id="emailError">This field is required!</div>
-                    <label>Feedback</label>
-                    <textarea placeholder="Please write your feedback here..." id="feedbackInput" required></textarea>
-                    <div class="error-message" id="feedbackError">This field is required!</div>
-                    <div class="emoji-rating">
-                        <span data-value='1'>😔</span>
-                        <span data-value='2'>😐</span>
-                        <span data-value='3'>😊</span>
-                        <span data-value='4'>😁</span>
-                        <span data-value='5'>🤩</span>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="sendFeedback">SEND FEEDBACK</button>
-                </div>
-            </div>
-        </div>
-    `;
+
+
+    let componentes = ``
+    form!.form.forEach(component => {
+        componentes += component;
+    })
+    let modalHTML = `<div style='    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s;'><div id='form' style='    background-color: white;
+    width: 90%; /* Largura padrão para telas pequenas */
+    max-width: 500px; /* Largura máxima para telas grandes */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinhamento do texto para a esquerda */'>${componentes}</div></div>`;
 
     const script = `
         function openModal() {
-            const modalBackground = document.getElementById('modalBackground');
+            const modalBackground = document.getElementById('form');
             modalBackground.style.visibility = 'visible';
             modalBackground.style.opacity = '1';
         }
         function closeModal() {
-            document.getElementById('modalBackground').style.visibility = 'hidden';
-            document.getElementById('modalBackground').style.opacity = '0';
+            document.getElementById('form').style.visibility = 'hidden';
+            document.getElementById('form').style.opacity = '0';
         }                
         document.addEventListener('DOMContentLoaded', function() {
             const feedbackButton = document.createElement('div');
