@@ -22,6 +22,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormBuilderComponent } from './shared/components/form-builder/form-builder.component';
 import { HtmlPipe } from './shared/pipes/html.pipe';
+import { ColorInputComponent } from './shared/components/color-input/color-input.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+
+import { FormBuilderModulesComponent } from './shared/components/form-builder-modules/form-builder-modules.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,10 @@ import { HtmlPipe } from './shared/pipes/html.pipe';
     SkeletonLoadingComponent,
     FeedbacksComponent,
     FormBuilderComponent,
-    HtmlPipe
+    HtmlPipe,
+    ColorInputComponent,
+    LoaderComponent,
+    FormBuilderModulesComponent
   ],
   imports: [
     BrowserModule,

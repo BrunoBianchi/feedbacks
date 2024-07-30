@@ -1,50 +1,61 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, EventEmitter, HostListener, Inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Form } from '../../interfaces/forms.interface';
-import { DOCUMENT } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DragAndDropService } from '../../services/drag-and-drop.service';
+interface t_styles {
+  type: string,
+  query?: Array<string>,
+  css: string
+}
 
 @Component({
   selector: 'app-form-builder',
   templateUrl: './form-builder.component.html',
-  styleUrl: './form-builder.component.scss',
+  styleUrls: ['./form-builder.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class FormBuilderComponent implements OnInit {
-  constructor(private el: ElementRef) { }
+
+export class FormBuilderComponent implements OnInit, OnChanges {
+  constructor(private el: ElementRef, private ss: DragAndDropService) { }
   @Input() public form!: Form;
+  @Input() public styles: any;
+  @Output() public changeForm = new EventEmitter<Form>();
   public previousForm!: Form;
   public show: boolean = false;
   public previousComponent!: any;
   public previousValue!: string | null;
   editableContainer: HTMLElement | null = null;
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['styles'] && !changes['styles'].isFirstChange()) {
+      const styles = changes['styles'].currentValue;
+      this.updateItemStyles(styles);
+    }
+  }
+
+  public removeItem(component: any) {
+    this.form.form = this.form.form.filter(c => c != component);
+  }
+
   ngOnInit(): void {
     this.previousForm = this.form;
     this.show = true;
     this.editableContainer = this.el.nativeElement.querySelector('.form');
-
   }
-
-  @Output() public changeForm = new EventEmitter<Form>();
-
 
   @HostListener('document:click', ['$event'])
   public documentClick(event: any): void {
-    // Ignore clicks inside the editable container
     this.editableContainer = this.el.nativeElement.querySelector('.form');
     if (this.editableContainer && !this.editableContainer.contains(event.target)) {
       this.finishEditing();
       return;
     }
 
-    // Ignore clicks on certain elements
     if (['div', 'ul', 'input', 'hr', 'section', 'textarea'].some(block => event.target.tagName.toLowerCase() === block)) return;
-
-    // If the target is different from the previous component, switch to editing mode
+    if (event.target.className.includes('editor')) return;
     if (this.previousComponent !== event.target) {
-      this.finishEditing(); // Save the previous component value
-      this.startEditing(event.target); // Start editing the new target
+      this.finishEditing();
+      this.startEditing(event.target);
     }
   }
 
@@ -62,7 +73,6 @@ export class FormBuilderComponent implements OnInit {
       this.previousComponent = target;
       this.previousValue = value;
 
-      // Focus the new input field
       const input = target.querySelector(".input-editor");
       if (input) {
         input.focus();
@@ -85,19 +95,54 @@ export class FormBuilderComponent implements OnInit {
     const index = this.form.form.findIndex(x => x.includes(this.previousValue!));
     if (index !== -1) {
       this.form.form[index] = this.form.form[index].replace(this.previousValue!, newValue);
+      this.changeForm.emit(this.form);
     }
   }
 
+  private updateItemStyles(styles: Array<t_styles>): void {
+    const items = this.el.nativeElement.querySelectorAll('.form-item');
+    items.forEach((item: HTMLElement, index: number) => {
+      styles.forEach((style: t_styles) => {
+        if (style.query!.length >= 1 && style.query![0] != '') {
+          const query: string = style.query?.join(',') || '';
+          const elementsFromQuery = this.el.nativeElement.querySelectorAll(query);
+          elementsFromQuery.forEach((el: any) => {
+            el.style[style.type] = style.css;
+          })
+        } else {
+          item.style[style.type as any] = style.css;
+        }
+      })
 
-  public change() {
-    console.log("aaa")
+      this.form.form[index] = this.updateStylesInString(this.form.form[index], styles);
+    });
+    this.changeForm.emit(this.form);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.form.form, event.previousIndex, event.currentIndex)
-    if (event.previousIndex != event.currentIndex) {
-      console.log("mudado")
-    }
 
+  private updateStylesInString(item: string, styles: Array<t_styles>): string {
+    const div = document.createElement('div');
+    div.innerHTML = item;
+    const element = div.firstChild as HTMLElement;
+    if (element) {
+      styles.forEach((style: t_styles) => {
+        if (style.query!.length >= 1 && style.query![0] != '') {
+          const query: string = style.query?.join(',') || '';
+          const elementsFromQuery = element.querySelectorAll(query);
+          elementsFromQuery.forEach((el: any) => {
+            el.style[style.type] = style.css;
+          })
+        } else {
+          element.style[style.type as any] = style.css;
+        }
+      })
+      return div.innerHTML;
+    }
+    return item;
+  }
+
+
+  drop(event: CdkDragDrop<string[]>): void {
+    this.ss.drop(event)
   }
 }

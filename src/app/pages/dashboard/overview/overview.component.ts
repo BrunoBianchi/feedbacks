@@ -5,7 +5,6 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { Form } from '../../../shared/interfaces/forms.interface';
 import { feedbacks } from '../../../shared/interfaces/feedbacks.interface';
 import { FeedbacksService } from '../../../shared/services/feedbacks.service';
-import { feedback } from '../../../../../server/dist/controller/feedback.controller';
 import { ViewportScroller } from '@angular/common';
 import { User } from '../../../shared/interfaces/user.interface';
 import { AuthService } from '../../../shared/services/auth.service';

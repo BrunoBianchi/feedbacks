@@ -1,0 +1,5 @@
+<div id="form-modules" cdkDropList [cdkDropListData]="modules_list">
+    @for (item of modules_list; track $index) {
+    <p class="module" [innerHTML]="item.icon|html" [cdkDragData]="item.module" cdkDrag></p>
+    }
+</div>

@@ -13,9 +13,9 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthService, private formService: FormsService) { }
   public user: User | null = this.authService.user;
   public forms: Observable<Form[]> = this.formService.forms;
+  public show: boolean = false;
   ngOnInit(): void {
-    this.formService.forms.subscribe((data: any) => {
-      console.log(data)
-    })
+    this.forms = this.formService.forms;
+    this.show = true;
   }
 }

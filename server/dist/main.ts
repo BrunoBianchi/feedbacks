@@ -10,6 +10,7 @@ import { verifiedWebsiteMiddleware } from "./middlewares/verified.middleware";
 app.listen(3000, () => {
     console.log(`Server listening! at port 3000`)
 })
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/libs/', router);
 app.use('/api/v1/auth', auth);
@@ -17,3 +18,5 @@ app.use('/api/v1/dashboard', authMiddleware);
 app.use('/api/v1/dashboard', dashboard);
 app.use('/api/v1/feedback', verifiedWebsiteMiddleware);
 app.use('/api/v1/feedback', feedback);
+
+//TODO Refatorar o codigo, deixar tudo mais clean

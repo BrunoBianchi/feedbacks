@@ -16,11 +16,12 @@ export class FeedbacksComponent implements OnInit {
   public createdFrom!: Date;
   public createdUntil!: Date;
   public Today: Date = new Date();
+  public show: boolean = false;
   constructor(private feedbacksService: FeedbacksService, private router: ActivatedRoute) { }
   async ngOnInit() {
     this.filterFeedbacks = await firstValueFrom(this.feedbacksService.getAllFeedbacksFromForm(this.router.snapshot.params['id']));
     this.feedbacks = this.filterFeedbacks;
-
+    this.show = true;
   }
 
   public filterRating() {

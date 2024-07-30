@@ -157,12 +157,13 @@ export class CrudeService {
         if (alreadyFeedback) throw 'user already sent feedback to this website!'
         const feedback = prisma.feedback.create({
             data: {
-                rating: params.rating,
+                rating: Number(params.rating),
                 comments: params.comments,
                 user: params.user,
                 websiteId: form.id
             }
         })
+
         return feedback;
     }
 }

@@ -29,35 +29,15 @@ router.get('/form-widget.js', async (req: Request, res: Response) => {
     form!.form.forEach(component => {
         componentes += component;
     })
-    let modalHTML = `<div style='    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.3s;'><div id='form' style='    background-color: white;
-    width: 90%; /* Largura padrão para telas pequenas */
-    max-width: 500px; /* Largura máxima para telas grandes */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Alinhamento do texto para a esquerda */'>${componentes}</div></div>`;
+    let modalHTML = `
+    <form  id='feedbacks_form'  action="http://localhost:3000/api/v1/feedback/send-feedback" method="post" style='${form.css};display:none;position:fixed;bottom:1rem;right:1rem;width:30% !important;max-height:400px;overflow-y:auto'>
+    <span id='close_btn' style='cursor:pointer;position:relative;left:95%;right:10px;margin-bottom:10px;'>X</span>
+    <input style='opacity:0% !important;display:none !important;' name='rating' value='0' id='rating'>
+    ${componentes}
+    </form>
+`;
 
-    const script = `
-        function openModal() {
-            const modalBackground = document.getElementById('form');
-            modalBackground.style.visibility = 'visible';
-            modalBackground.style.opacity = '1';
-        }
-        function closeModal() {
-            document.getElementById('form').style.visibility = 'hidden';
-            document.getElementById('form').style.opacity = '0';
-        }                
+    const script = `              
         document.addEventListener('DOMContentLoaded', function() {
             const feedbackButton = document.createElement('div');
             feedbackButton.setAttribute('class', 'feedbacks-container');
@@ -70,49 +50,29 @@ router.get('/form-widget.js', async (req: Request, res: Response) => {
             modalDiv.innerHTML = \`${modalHTML.replace(/`/g, "\\`")}\`;
             document.body.appendChild(modalDiv);
 
-            document.getElementById('closeModal').addEventListener('click', closeModal);
+             const feedback_form = document.getElementById('feedbacks_form');
+             const close_btn = document.getElementById('close_btn')
+             function openModal() {
+                feedback_form.style.display = 'inherit'
 
-            document.getElementById('sendFeedback').addEventListener('click', validateForm);
-
+             }
+            function closeModal() {
+              feedback_form.style.display = 'none'
+            }  
+    close_btn.addEventListener('click', closeModal);
             // Adicionando interação com emojis
             const emojis = document.querySelectorAll('.emoji-rating span');
+            const ratingInput =  document.getElementById('rating')
             emojis.forEach(emoji => {
                 emoji.addEventListener('click', function() {
-                    emojis.forEach(e => e.classList.remove('selected'));
+                    emojis.forEach(e => {e.classList.remove('selected'); e.style.opacity = 0.6;});
+                    ratingInput.value = emoji.dataset.value;
+                    emoji.style.opacity = 1;
                     emoji.classList.add('selected');
                 });
             });
         });
 
-        function validateForm() {
-            let isValid = true;
-            const email = document.getElementById('emailInput');
-            const feedback = document.getElementById('feedbackInput');
-            const selectedEmoji = document.querySelector('.emoji-rating span.selected');
-            if (!email.value) {
-                document.getElementById('emailError').style.display = 'block';
-                email.classList.add('input-error');
-                isValid = false;
-            } else {
-                document.getElementById('emailError').style.display = 'none';
-                email.classList.remove('input-error');
-            }
-            if (!feedback.value) {
-                document.getElementById('feedbackError').style.display = 'block';
-                feedback.classList.add('input-error');
-                isValid = false;
-            } else {
-                document.getElementById('feedbackError').style.display = 'none';
-                feedback.classList.remove('input-error');
-            }
-            if (isValid) {
-                sendFeedback(email.value, feedback.value, selectedEmoji ? selectedEmoji.dataset.value : '');
-            }
-        }
-
-        function sendFeedback(email, feedback, emoji) {
-            console.log('Sending feedback...', {email, feedback, emoji});
-        }
     `;
 
     const result = uglifyJS.minify(script);

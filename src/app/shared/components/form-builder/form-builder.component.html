@@ -1,8 +1,13 @@
 @if(show) {
-<div cdkDropList (cdkDropListDropped)="drop($event)">
+<div id="form-builder" [cdkDropListData]="form.form" cdkDropList (cdkDropListDropped)="drop($event)">
     <div class="form" [style]="form.css">
         <div *ngFor="let component of form.form" class="drag" cdkDrag>
-            <div [innerHTML]="component| html"></div>
+            <!-- TODO Melhorar esse sistema de excluir componente! Precisa verificar o tipo de componente e nao se inclui a string! -->
+            @if(!component.includes('email') && !component.includes('button') ) {
+            <span class="remove editor" (click)="removeItem(component)">⛔</span>
+            }
+
+            <div [innerHTML]="component| html" class="form-item"></div>
             <div class="placeholder" *cdkDragPlaceholder></div>
 
         </div>

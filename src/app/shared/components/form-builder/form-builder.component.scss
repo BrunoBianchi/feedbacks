@@ -1,9 +1,19 @@
 .drag {
     padding:6px;;
+    .remove {
+      display: none;
+      position:absolute;
+      right:23px;
+      margin-top:-15px;
+    }
     &:hover {
         cursor: pointer;
         border:2px dashed rgb(199, 198, 198);
         border-radius:5px;
+        .remove {
+          display: initial;
+          cursor: pointer;
+        }
     }
 }
 
@@ -22,7 +32,10 @@
   }
 .input-editor {
   padding:5px;
-  border-radius:5px;
   outline: none;
+  width:auto;
   border-color:transparent;
+  border-bottom:1px dashed black;
+  background-color: transparent;
+  margin-bottom:5px;
 }

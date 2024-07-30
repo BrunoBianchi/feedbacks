@@ -5,28 +5,67 @@
     <div class="links">
         <div class="link selected">Embed Form</div>
         <div class="link">Custom Form</div>
+        <div class="link">Feedback Widget</div>
         <div class="link">Review Widget</div>
     </div>
 
     <div class="embed">
         <p><strong>Integrate with embed code</strong></p>
-        <p>Integrating using embed is the easiet and quickest way to show the signup form on your website. Customize the
+        <p>Integrating using embed is the easiest and quickest way to show the signup form on your website. Customize
+            the
             widget and follow the below steps to integrate on your website.</p>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="controlls">
-                    <p>Customize widget</p>
-                    <section id="title">
-                        <p>Title</p>
+        <div class="row" style="margin-top:30px;">
+            <div cdkDropListGroup style="display: flex;">
+                <div class="col-md-7">
 
-                    </section>
+                    <div class="controlls">
+                        <p class="title">Customize Form</p>
+                        <section id="color" class="section">
+                            <p>Form Text color</p>
+                            <p>This color is used for all form text. Default is black</p>
+                            <app-color-input [inputStyle]="styles[0]" [inputQuery]="['']" [inputType]="'color'"
+                                (emitStyle)="changeStyle($event)"></app-color-input>
+                        </section>
+
+                        <section id="color" class="section">
+                            <p>Input Background color</p>
+                            <p>This color is used for all background input color. Default is grey</p>
+                            <app-color-input [inputStyle]="styles[1]" [inputQuery]="['input', 'textarea']"
+                                [inputType]="'background-color'" (emitStyle)="changeStyle($event)"></app-color-input>
+                        </section>
+                        <section id="color" class="section">
+                            <p>Input text color</p>
+                            <p>This color is used for all input text color. Default is black</p>
+                            <app-color-input [inputStyle]="styles[4]" [inputQuery]="['input', 'textarea']"
+                                [inputType]="'color'" (emitStyle)="changeStyle($event)"></app-color-input>
+                        </section>
+                        <section id="color" class="section">
+                            <p>Button Background color</p>
+                            <p>This color is used for background of button. Default is green</p>
+                            <app-color-input [inputStyle]="styles[2]" [inputQuery]="['button']"
+                                [inputType]="'background-color'" (emitStyle)="changeStyle($event)"></app-color-input>
+                        </section>
+                        <section id="color" class="section">
+                            <p>Button text color</p>
+                            <p>This color is used for button text color. Default is white</p>
+                            <app-color-input [inputStyle]="styles[3]" [inputQuery]="['button']" [inputType]="'color'"
+                                (emitStyle)="changeStyle($event)"></app-color-input>
+                        </section>
+                        <section id="color" class="section">
+                            <p>Form Modules</p>
+                            <p>Drag And Drop into the preview to add it.</p>
+                            <app-form-builder-modules [listData]="form.form"
+                                (transItems)="transferItems($event)"></app-form-builder-modules>
+                        </section>
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-md-5">
-                <div class="preview">
-                    <p>Preview</p>
-                    <app-form-builder [form]="form"></app-form-builder>
-                    <button (click)="saveChanges()" class="save-changes">Save Changes</button>
+                <div class="col-md-5">
+                    <div class="preview">
+                        <p>Preview</p>
+                        <app-form-builder [styles]="styles" [form]="form"></app-form-builder>
+                        <button (click)="saveChanges()" class="save-changes">Save Changes</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,4 +83,6 @@
         <button class="copy-button" (click)="copyCode()"><i class="fa-solid fa-copy"></i> Copy code</button>
     </div>
 </div>
+}@else {
+<app-loader></app-loader>
 }
